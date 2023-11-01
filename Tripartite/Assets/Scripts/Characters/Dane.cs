@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using Tripartite.UI;
 using UnityEngine.InputSystem;
+using Tripartite.Events;
+using Tripartite.Dialogue;
 
 namespace Tripartite.Characters
 {
-    public class Death : MonoBehaviour
+    public class Dane : MonoBehaviour
     {
         #region FIELDS
+        [SerializeField] private GameEvent onTalk;
         private Text messageText;
         private TextWriter.TextWriterSingle textWriterSingle;
+
+        public string message;
         #endregion
 
         private void Awake()
@@ -29,17 +34,20 @@ namespace Tripartite.Characters
                 }
                 else
                 {
-                    string[] messageArray = new string[]
-                    {
-                    "Where am I?",
-                    "What am I doing?",
-                    "What is this place?"
-                    };
-
-                    string message = messageArray[Random.Range(0, messageArray.Length)];
-                    textWriterSingle = TextWriter.AddWriter_Static(messageText, message, 0.05f, true, true);
+                    ResponseQuery query = new ResponseQuery();
+                    query.Add("listener", 15067f);
+                    query.Add("timesGameLoaded", 0f);
+                    
+                    onTalk.Raise(this, query);
                 }
             }
+        }
+
+        public void OnResponse(Component sender, object data)
+        {
+            if (!(data is string)) return;
+
+            textWriterSingle = TextWriter.AddWriter_Static(messageText, (string)data, 0.05f, true, true);
         }
     }
 }
