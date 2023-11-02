@@ -42,6 +42,9 @@ namespace Tripartite.UI
             });
         }
 
+        /// <summary>
+        /// Deactivate the menu
+        /// </summary>
         public void DeactivateMenu()
         {
             gameObject.SetActive(false);

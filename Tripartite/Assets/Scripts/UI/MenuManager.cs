@@ -18,7 +18,7 @@ namespace Tripartite.UI
         [SerializeField] private ConfirmationMenu restartConfirmationMenu;
         #endregion
 
-        public void Awake()
+        public void Start()
         {
             // Load the menu
             LoadMenu();
@@ -29,26 +29,41 @@ namespace Tripartite.UI
         /// </summary>
         public void LoadMenu()
         {
-            if (factSheet.TryGetKey("Global"))
+            // Check if any data exists
+            if (DataManager.Instance.Data != null)
             {
-                if (factSheet.facts["Global"].TryGetValue("timesGameLoaded", out float value))
+                // If not, then set up the standard menu
+                playButton.gameObject.SetActive(false);
+                continueButton.gameObject.SetActive(true);
+                restartButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                // If data exists, check how many times the game has been loaded
+                if (factSheet.TryGetKey("Global"))
                 {
-                    if (value >= 1)
+                    if (factSheet.facts["Global"].TryGetValue("timesGameLoaded", out float value))
                     {
-                        playButton.gameObject.SetActive(false);
-                        continueButton.gameObject.SetActive(true);
-                        restartButton.gameObject.SetActive(true);
+                        // If the game has been loaded once or more, show the continue/restart menu
+                        if (value >= 1)
+                        {
+                            playButton.gameObject.SetActive(false);
+                            continueButton.gameObject.SetActive(true);
+                            restartButton.gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            // Otherwise show the standard menu
+                            playButton.gameObject.SetActive(true);
+                            continueButton.gameObject.SetActive(false);
+                            restartButton.gameObject.SetActive(false);
+                        }
                     }
                     else
                     {
-                        playButton.gameObject.SetActive(true);
-                        continueButton.gameObject.SetActive(false);
-                        restartButton.gameObject.SetActive(false);
+                        // Debug for Fact errors
+                        Debug.LogError("No Key called timesGameLoaded in the Global Fact Sheet");
                     }
-                }
-                else
-                {
-                    Debug.LogError("No Key called timesGameLoaded in the Global Fact Sheet");
                 }
             }
         }
