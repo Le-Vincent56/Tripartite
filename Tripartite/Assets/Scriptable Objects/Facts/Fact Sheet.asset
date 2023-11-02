@@ -18,18 +18,18 @@ MonoBehaviour:
       Value:
         _serializedList:
         - Key: timesGameLoaded
-          Value: 0
-        - Key: timeSinceLastPlayed
+          Value: 2
+        - Key: timesSinceLastPlayed
           Value: 0
     - Key: Id
       Value:
         _serializedList:
         - Key: isSpeaking
-          Value: 3
+          Value: 0
         - Key: timesInterrupted
-          Value: 5
+          Value: 0
         - Key: timesIgnored
-          Value: 6
+          Value: 0
     - Key: Ego
       Value:
         _serializedList:

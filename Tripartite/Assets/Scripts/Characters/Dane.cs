@@ -24,6 +24,14 @@ namespace Tripartite.Characters
             messageText = GetComponent<Text>();
         }
 
+        #region DIALOGUE EVENTS
+        public void OnNewStart(Component sender, object data)
+        {
+            string message = "Well, this is it. I think I’ve finally gone insane.";
+            textWriterSingle = TextWriter.AddWriter_Static(messageText, message, 0.05f, true, true);
+        }
+        #endregion
+
         public void OnClick(InputAction.CallbackContext context)
         {
             if(context.started)

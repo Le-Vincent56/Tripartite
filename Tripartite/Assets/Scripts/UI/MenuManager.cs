@@ -30,12 +30,12 @@ namespace Tripartite.UI
         public void LoadMenu()
         {
             // Check if any data exists
-            if (DataManager.Instance.Data != null)
+            if (DataManager.Instance.Data == null)
             {
                 // If not, then set up the standard menu
-                playButton.gameObject.SetActive(false);
-                continueButton.gameObject.SetActive(true);
-                restartButton.gameObject.SetActive(true);
+                playButton.gameObject.SetActive(true);
+                continueButton.gameObject.SetActive(false);
+                restartButton.gameObject.SetActive(false);
             }
             else
             {

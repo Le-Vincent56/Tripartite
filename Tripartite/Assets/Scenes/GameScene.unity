@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 1024677744}
   - component: {fileID: 1024677743}
   m_Layer: 5
-  m_Name: Superego
+  m_Name: Summer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,7 +385,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Superego
+  m_Text: 
 --- !u!222 &1024677744
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 1388910334}
   - component: {fileID: 1388910333}
   m_Layer: 5
-  m_Name: Ego
+  m_Name: Egor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -652,7 +652,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ego
+  m_Text: 
 --- !u!222 &1388910334
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -794,7 +794,7 @@ GameObject:
   - component: {fileID: 1683266415}
   - component: {fileID: 1683266414}
   m_Layer: 5
-  m_Name: Id
+  m_Name: Ida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -853,7 +853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Id
+  m_Text: 
 --- !u!222 &1683266415
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -935,7 +935,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Death
+  m_Text: 
 --- !u!222 &1791101392
 CanvasRenderer:
   m_ObjectHideFlags: 0
