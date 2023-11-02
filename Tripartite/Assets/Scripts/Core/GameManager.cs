@@ -9,16 +9,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private FactSheet factSheet;
-    [SerializeField] private GameEvent onNewStart;
+    [SerializeField] private GameEvent onConversationA00;
 
     private void Start()
     {
         // Begin the game
-        if(factSheet.TryGetKey("Global"))
+        if (factSheet.TryGetKey("Global"))
         {
             if (factSheet.facts["Global"].TryGetValue("timesGameLoaded", out float value) && value == 1)
             {
-                onNewStart.Raise(this, this);
+                onConversationA00.Raise(this, this);
             }
         }
     }

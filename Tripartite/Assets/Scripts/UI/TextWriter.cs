@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static Tripartite.UI.TextWriter;
 
 namespace Tripartite.UI
 {
@@ -9,27 +12,38 @@ namespace Tripartite.UI
     {
         #region FIELDS
         private static TextWriter instance;
-        private List<TextWriterSingle> textWriterSingleList;
+        [SerializeField] private Queue<TextWriterSingle> writerQueue;
         #endregion
 
         private void Awake()
         {
             instance = this;
-            textWriterSingleList = new List<TextWriterSingle>();
+            writerQueue = new Queue<TextWriterSingle>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            for (int i = 0; i < textWriterSingleList.Count; i++)
+            // If there are items in the writerQueue, update them
+            if(writerQueue.Count > 0)
             {
-                bool dialogEnd = textWriterSingleList[i].Update();
+                writerQueue.Peek().Update();
+            }
+        }
 
-                // Check if dialog has ended
-                if (dialogEnd)
+        public void OnClick(InputAction.CallbackContext context)
+        {
+            // Only trigger once on click, and check if there are any items in the Queue
+            if(context.started && writerQueue.Count > 0)
+            {
+                // If a current writer is active, write all of it
+                if(writerQueue.Peek().IsActive())
                 {
-                    textWriterSingleList.RemoveAt(i);
-                    i--;
+                    writerQueue.Peek().WriteAll();
+                } else
+                {
+                    // Otherwise, dequeue it
+                    writerQueue.Dequeue();
                 }
             }
         }
@@ -43,24 +57,10 @@ namespace Tripartite.UI
         /// <param name="invisibleCharacters">Whether to keep invisible character placement</param>
         /// <param name="removeWriterBeforeAdd">Whether to destroy the TextWriterSingle before it</param>
         /// <returns></returns>
-        public static TextWriterSingle AddWriter_Static(Text textUI, string text, float timePerCharacter, bool invisibleCharacters, bool removeWriterBeforeAdd)
+        public static TextWriterSingle AddWriter_Static(Text textUI, string text, float timePerCharacter, bool invisibleCharacters)
         {
-            if (removeWriterBeforeAdd)
-            {
-                instance.RemoveWriter(textUI);
-            }
-
             // Create single text writer with data
             return instance.AddWriter(textUI, text, timePerCharacter, invisibleCharacters);
-        }
-
-        /// <summary>
-        /// Remove a TextWriterSingle from the list - statically
-        /// </summary>
-        /// <param name="textUI">The Text object associated with the TextWriterSingle</param>
-        public static void RemoveWriter_Static(Text textUI)
-        {
-            instance.RemoveWriter(textUI);
         }
 
         /// <summary>
@@ -75,25 +75,9 @@ namespace Tripartite.UI
             TextWriterSingle textWriterSingle = new TextWriterSingle(textUI, text, timePerCharacter, invisibleCharacters);
 
             // Create single text writer with data
-            textWriterSingleList.Add(textWriterSingle);
+            writerQueue.Enqueue(textWriterSingle);
 
             return textWriterSingle;
-        }
-
-        /// <summary>
-        /// Remove a TextWriterSingle from the list
-        /// </summary>
-        /// <param name="textUI">The Text object associated with the TextWriterSingle</param>
-        private void RemoveWriter(Text textUI)
-        {
-            for (int i = 0; i < textWriterSingleList.Count; i++)
-            {
-                if (textUI == textWriterSingleList[i].GetTextUI())
-                {
-                    textWriterSingleList.RemoveAt(i);
-                    i--;
-                }
-            }
         }
 
         public class TextWriterSingle
@@ -122,10 +106,17 @@ namespace Tripartite.UI
             /// Update the TextWriterSingle
             /// </summary>
             /// <returns>True if the text has completed, false if not</returns>
-            public bool Update()
+            public void Update()
             {
                 // If textUI is null, return
-                if (textUI == null) return false;
+                if (textUI == null) return;
+
+                // Check if the text has ended
+                if (characterIndex >= textToWrite.Length)
+                {
+                    // If so, return true
+                    return;
+                }
 
                 // Subtract deltaTime from the timer
                 timer -= Time.deltaTime;
@@ -148,17 +139,7 @@ namespace Tripartite.UI
 
                     // Show the text
                     textUI.text = textToShow;
-
-                    // Check if the text has ended
-                    if (characterIndex >= textToWrite.Length)
-                    {
-                        // If so, return true
-                        return true;
-                    }
                 }
-
-                // Return false if while ends
-                return false;
             }
 
             /// <summary>

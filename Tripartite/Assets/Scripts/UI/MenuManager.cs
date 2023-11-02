@@ -77,11 +77,11 @@ namespace Tripartite.UI
             DataManager.Instance.NewGame();
 
             // Set TimesGameLoaded to 1
-            if(factSheet.TryGetKey("Global"))
+            if (factSheet.TryGetKey("Global"))
             {
                 if(factSheet.facts["Global"].TryGetValue("timesGameLoaded", out float value))
                 {
-                    factSheet.facts["Global"]["timesGameLoaded"] = value + 1;
+                    factSheet.facts["Global"]["timesGameLoaded"] = 1;
                 } else
                 {
                     Debug.LogError("No Key called timesGameLoaded in the Global Fact Sheet");

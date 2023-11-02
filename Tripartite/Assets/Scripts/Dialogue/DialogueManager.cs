@@ -10,23 +10,14 @@ public class DialogueManager : MonoBehaviour
     #region FIELDS
     [Header("Fact Sheets")]
     [SerializeField] private FactSheet factSheet;
+    [SerializeField] private RulesSheet IdaRules;
+    [SerializeField] private RulesSheet EgorRules;
+    [SerializeField] private RulesSheet SummerRules;
 
     [Space(20)]
     [Header("Query")]
     [SerializeField] private ResponseQuery currentQuery;
     #endregion
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void OnReceiveDialogue(Component sender, object data)
     {
@@ -59,6 +50,23 @@ public class DialogueManager : MonoBehaviour
                 {
                     currentQuery.Add(keyValue.Key, keyValue.Value);
                 }
+                break;
+        }
+
+        // Compile global facts
+        foreach (KeyValuePair<string, float> keyValue in factSheet.facts["Global"])
+        {
+            currentQuery.Add(keyValue.Key, keyValue.Value);
+        }
+    }
+
+    public void SearchCriterion()
+    {
+        switch(currentQuery.Get("concept").value)
+        {
+            // A00 - New Start
+            case 6500f:
+
                 break;
         }
     }
