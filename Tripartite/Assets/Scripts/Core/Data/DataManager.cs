@@ -18,10 +18,7 @@ namespace Tripartite.Data
 
         #region FIELDS
         [SerializeField] private string fileName = "PlayerSave.json";
-        [SerializeField] private string settingsFileName = "SettingsSave.json";
         [SerializeField] private bool useEncryption = true;
-        [SerializeField] private bool initializeDataIfNull = false; // Use if you don't want to go through the main menu to test data persistence
-        [SerializeField] private bool useAutoSave = false;
         private string selectedProfileID = "";
         private string softProfileID = "";
         #endregion
