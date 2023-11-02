@@ -13,7 +13,6 @@ namespace Tripartite.Data
         [SerializeField] private GameData gameData;
         [SerializeField] private FactSheet factSheet;
         public FileDataHandler dataHandler;
-        public InputActionAsset actions;
         #endregion
 
         #region FIELDS
