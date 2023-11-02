@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 89c1426ba7c3d1e4fbbbf43c5bdb353f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Kurland
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 933b964644e8f7a4c995e3e4ce4b9b60, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

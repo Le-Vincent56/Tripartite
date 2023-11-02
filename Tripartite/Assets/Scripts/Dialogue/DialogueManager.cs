@@ -34,7 +34,7 @@ public class DialogueManager : MonoBehaviour
 
         currentQuery = (ResponseQuery)data;
 
-        // Compile more facts onto the query
+        // Compile more facts onto the query based on the listener
         switch(currentQuery.Get("listener").value)
         {
             // Id

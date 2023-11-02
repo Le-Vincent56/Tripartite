@@ -45,7 +45,7 @@ namespace Tripartite.UI
         /// <returns></returns>
         public static TextWriterSingle AddWriter_Static(Text textUI, string text, float timePerCharacter, bool invisibleCharacters, bool removeWriterBeforeAdd)
         {
-            if(removeWriterBeforeAdd)
+            if (removeWriterBeforeAdd)
             {
                 instance.RemoveWriter(textUI);
             }
@@ -86,9 +86,9 @@ namespace Tripartite.UI
         /// <param name="textUI">The Text object associated with the TextWriterSingle</param>
         private void RemoveWriter(Text textUI)
         {
-            for(int i = 0; i < textWriterSingleList.Count; i++)
+            for (int i = 0; i < textWriterSingleList.Count; i++)
             {
-                if(textUI == textWriterSingleList[i].GetTextUI())
+                if (textUI == textWriterSingleList[i].GetTextUI())
                 {
                     textWriterSingleList.RemoveAt(i);
                     i--;

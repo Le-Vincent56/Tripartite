@@ -25,11 +25,11 @@ MonoBehaviour:
       Value:
         _serializedList:
         - Key: isSpeaking
-          Value: 0
+          Value: 3
         - Key: timesInterrupted
-          Value: 0
+          Value: 5
         - Key: timesIgnored
-          Value: 0
+          Value: 6
     - Key: Ego
       Value:
         _serializedList:

@@ -113,6 +113,7 @@ namespace Tripartite.Data
             // Use Path.Combine() to account for different OS's having different path separators
             string fullPath = Path.Combine(dataDirPath, profileID, dataFileName);
             string backupFilePath = fullPath + backupExtension;
+            Debug.Log(fullPath);
 
             // Use a try/catch to look for saving file errors
             try

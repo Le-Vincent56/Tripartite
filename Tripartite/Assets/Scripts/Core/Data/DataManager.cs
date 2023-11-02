@@ -24,8 +24,6 @@ namespace Tripartite.Data
         [SerializeField] private bool useAutoSave = false;
         private string selectedProfileID = "";
         private string softProfileID = "";
-        [SerializeField] private float autoSaveTimeSeconds = 60f;
-        private Coroutine autoSaveCoroutine;
         #endregion
 
         #region PROPERTIES
@@ -60,12 +58,14 @@ namespace Tripartite.Data
         {
             // Subscribe to scene events
             SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
         }
 
         private void OnDisable()
         {
             // Unsubscribe to scene events
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
         }
 
         /// <summary>
@@ -77,6 +77,15 @@ namespace Tripartite.Data
         {
             // Load the Game
             LoadGame();
+        }
+
+        public void OnSceneUnloaded(Scene scene)
+        {
+            if (SceneManager.GetActiveScene().name == "GameScene")
+            {
+                // Save the game
+                SaveGame();
+            }
         }
 
         /// <summary>
@@ -140,13 +149,16 @@ namespace Tripartite.Data
         /// Delete profile data using the current profile ID
         /// </summary>
         /// <param name="profileID"></param>
-        public void DeleteProfileData(string profileID)
+        public void ResetProfileData()
         {
             // Delete the data for this proile ID
-            dataHandler.Delete(profileID);
+            dataHandler.Delete(dataHandler.GetMostRecentlyUpdatedProfileID());
 
             // Initialize the selected profile ID
-            InitializeSelectedProfileID();
+            NewGame();
+
+            // Save the new data
+            dataHandler.Save(gameData, selectedProfileID);
 
             // Reload the game so that our data matches the newly selected profile ID
             LoadGame();
