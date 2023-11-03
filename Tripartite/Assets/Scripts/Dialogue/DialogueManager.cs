@@ -42,7 +42,16 @@ namespace Tripartite.Dialogue
             if (!(data is ResponseQuery)) return;
 
             Debug.Log("Received A00-1");
-            currentQuery = (ResponseQuery)data;
+
+            // Cast the data
+            ResponseQuery passedData = (ResponseQuery)data;
+            currentQuery = new ResponseQuery();
+
+            // Add all the facts from passed-in data to the current query
+            foreach(Fact fact in passedData.facts)
+            {
+                currentQuery.facts.Add(fact);
+            }
 
             // Compile more facts onto the query based on the listener
             switch (currentQuery.Get(FactKey.Listener).value)

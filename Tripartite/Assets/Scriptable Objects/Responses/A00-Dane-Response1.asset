@@ -16,7 +16,7 @@ MonoBehaviour:
     key: 0
     value: 3
   text:
-  - ...
+  - .  .  .
   - What?
   textSpeed:
   - 0.2
