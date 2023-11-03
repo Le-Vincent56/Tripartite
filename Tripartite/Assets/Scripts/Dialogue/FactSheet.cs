@@ -9,7 +9,7 @@ namespace Tripartite.Dialogue
     [CreateAssetMenu(menuName = "Fact Sheet")]
     public class FactSheet : ScriptableObject
     {
-        public SerializedDictionary<string, SerializedDictionary<string, float>> facts = new SerializedDictionary<string, SerializedDictionary<string, float>>();
+        public SerializedDictionary<string, SerializedDictionary<FactKey, int>> facts = new SerializedDictionary<string, SerializedDictionary<FactKey, int>>();
 
         /// <summary>
         /// Save Data from the Fact Sheet
@@ -20,14 +20,14 @@ namespace Tripartite.Dialogue
             if (TryGetKey("Global"))
                 gameData.globalFacts = facts["Global"];
 
-            if (TryGetKey("Id"))
-                gameData.idFacts = facts["Id"];
+            if (TryGetKey("Ida"))
+                gameData.idFacts = facts["Ida"];
 
-            if (TryGetKey("Ego"))
-                gameData.egoFacts = facts["Ego"];
+            if (TryGetKey("Egor"))
+                gameData.egoFacts = facts["Egor"];
 
-            if(TryGetKey("Superego"))
-                gameData.superEgoFacts = facts["Superego"];
+            if(TryGetKey("Summer"))
+                gameData.superEgoFacts = facts["Summer"];
         }
 
         /// <summary>
@@ -39,14 +39,14 @@ namespace Tripartite.Dialogue
             if(TryGetKey("Global")) 
                 facts["Global"] = gameData.globalFacts;
 
-            if(TryGetKey("Id")) 
-                facts["Id"] = gameData.idFacts;
+            if(TryGetKey("Ida")) 
+                facts["Ida"] = gameData.idFacts;
 
-            if(TryGetKey("Ego")) 
-                facts["Ego"] = gameData.egoFacts;
+            if(TryGetKey("Egor")) 
+                facts["Egor"] = gameData.egoFacts;
 
-            if(TryGetKey("Superego")) 
-                facts["Superego"] = gameData.superEgoFacts;
+            if(TryGetKey("Summer")) 
+                facts["Summer"] = gameData.superEgoFacts;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Tripartite.Dialogue
         /// <returns>True if the key exists, false if not</returns>
         public bool TryGetKey(string key)
         {
-            if (facts.TryGetValue(key, out SerializedDictionary<string, float> result))
+            if (facts.TryGetValue(key, out SerializedDictionary<FactKey, int> result))
             {
                 return true;
             }

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         // Begin the game
         if (factSheet.TryGetKey("Global"))
         {
-            if (factSheet.facts["Global"].TryGetValue("timesGameLoaded", out float value) && value == 1)
+            if (factSheet.facts["Global"].TryGetValue(FactKey.TimesGameLoaded, out int value) && value == 1)
             {
                 onConversationA00.Raise(this, this);
             }

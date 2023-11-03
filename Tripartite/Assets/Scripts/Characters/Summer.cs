@@ -8,7 +8,7 @@ using Tripartite.Events;
 
 namespace Tripartite.Characters
 {
-    public class Egor : MonoBehaviour
+    public class Summer : MonoBehaviour
     {
         #region FIELDS
         [SerializeField] private GameEvent onTalk;
@@ -29,18 +29,16 @@ namespace Tripartite.Characters
         public void OnResponse(Component sender, object data)
         {
             if (!(data is Response)) return;
-           
+
             // Cast data
             Response response = (Response)data;
             Debug.Log($"Response Received for Speaker {response.speaker.value}");
 
             // Return if not this speaker
-            if (response.speaker.value != 1) return;
-
-            Debug.Log("Response Written!");
+            if (response.speaker.value != 2) return;
 
             // Add text
-            for (int i = 0; i < response.text.Length; i++)
+            for(int i = 0; i < response.text.Length; i++)
             {
                 textWriterSingle = TextWriter.AddWriter_Static(messageText, response.text[i], response.textSpeed[i], true);
             }

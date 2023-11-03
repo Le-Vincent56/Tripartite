@@ -2,6 +2,7 @@ using AYellowpaper.SerializedCollections;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Tripartite.Dialogue;
 
 namespace Tripartite.Data
 {
@@ -12,10 +13,10 @@ namespace Tripartite.Data
         public long lastUpdated;
 
         #region FACTS
-        public SerializedDictionary<string, float> globalFacts;
-        public SerializedDictionary<string, float> idFacts;
-        public SerializedDictionary<string, float> egoFacts;
-        public SerializedDictionary<string, float> superEgoFacts;
+        public SerializedDictionary<FactKey, int> globalFacts;
+        public SerializedDictionary<FactKey, int> idFacts;
+        public SerializedDictionary<FactKey, int> egoFacts;
+        public SerializedDictionary<FactKey, int> superEgoFacts;
         #endregion
         #endregion
 
@@ -24,31 +25,31 @@ namespace Tripartite.Data
         {
             lastUpdated = 0;
 
-            globalFacts = new SerializedDictionary<string, float>()
+            globalFacts = new SerializedDictionary<FactKey, int>()
             {
-                {"timesGameLoaded", 0},
-                {"timesSinceLastPlayed", 0}
+                {FactKey.TimesGameLoaded, 0},
+                {FactKey.TimeSinceLastPlayed, 0}
             };
 
-            idFacts = new SerializedDictionary<string, float>()
+            idFacts = new SerializedDictionary<FactKey, int>()
             {
-                {"isSpeaking", 0 },
-                {"timesInterrupted", 0 },
-                {"timesIgnored", 0 }
+                {FactKey.IsSpeaking, 0 },
+                {FactKey.TimesInterrupted, 0 },
+                {FactKey.TimesIgnored, 0 }
             };
 
-            egoFacts = new SerializedDictionary<string, float>()
+            egoFacts = new SerializedDictionary<FactKey, int>()
             {
-                {"isSpeaking", 0 },
-                {"timesInterrupted", 0 },
-                {"timesIgnored", 0 }
+                {FactKey.IsSpeaking, 0 },
+                {FactKey.TimesInterrupted, 0 },
+                {FactKey.TimesIgnored, 0 }
             };
 
-            superEgoFacts = new SerializedDictionary<string, float>()
+            superEgoFacts = new SerializedDictionary<FactKey, int>()
             {
-                {"isSpeaking", 0 },
-                {"timesInterrupted", 0 },
-                {"timesIgnored", 0 }
+                {FactKey.IsSpeaking, 0 },
+                {FactKey.TimesInterrupted, 0 },
+                {FactKey.TimesIgnored, 0 }
             };
         }
     }

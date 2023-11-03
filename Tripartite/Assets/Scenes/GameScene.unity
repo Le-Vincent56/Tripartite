@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 262391303}
   - component: {fileID: 262391302}
+  - component: {fileID: 262391305}
   - component: {fileID: 262391304}
   m_Layer: 0
   m_Name: Dialogue Manager
@@ -154,11 +155,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   factSheet: {fileID: 11400000, guid: 2e29b4abbfda68a45b07c9038446241b, type: 2}
-  IdaRules: {fileID: 0}
-  EgorRules: {fileID: 0}
-  SummerRules: {fileID: 0}
+  ruleSheets:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: b87f0a1f65aa1b742a17876b948b0453, type: 2}
+    - Key: 1
+      Value: {fileID: 11400000, guid: 8bc44b54a06cdd34a98015a78294682a, type: 2}
+    - Key: 2
+      Value: {fileID: 11400000, guid: e94136de4a1af0144a5682255b671a3a, type: 2}
+    - Key: 3
+      Value: {fileID: 11400000, guid: 11a8656e84441b346bcfaa06fc5e6a66, type: 2}
   currentQuery:
     facts: []
+  onResponse: {fileID: 11400000, guid: 9877abd7002f3bf41ac85c41a2861e55, type: 2}
 --- !u!4 &262391303
 Transform:
   m_ObjectHideFlags: 0
@@ -186,12 +195,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0b6b9025c82e949b5d967e0e294a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 7bad387efc1a35d46a4b69436426697d, type: 2}
+  gameEvent: {fileID: 11400000, guid: c1aa7a064c4c1214783e5ed7a83d20f5, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 262391302}
         m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: OnReceiveDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &262391305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262391301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0b6b9025c82e949b5d967e0e294a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 7bad387efc1a35d46a4b69436426697d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 262391302}
+        m_TargetAssemblyTypeName: Tripartite.Dialogue.DialogueManager, Assembly-CSharp
         m_MethodName: OnReceiveDialogue
         m_Mode: 0
         m_Arguments:
@@ -343,6 +380,8 @@ GameObject:
   - component: {fileID: 1024677742}
   - component: {fileID: 1024677744}
   - component: {fileID: 1024677743}
+  - component: {fileID: 1024677746}
+  - component: {fileID: 1024677745}
   m_Layer: 5
   m_Name: Summer
   m_TagString: Untagged
@@ -412,6 +451,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024677741}
   m_CullTransparentMesh: 1
+--- !u!114 &1024677745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024677741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0b6b9025c82e949b5d967e0e294a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9877abd7002f3bf41ac85c41a2861e55, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1024677746}
+        m_TargetAssemblyTypeName: Tripartite.Characters.Summer, Assembly-CSharp
+        m_MethodName: OnResponse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1024677746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024677741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0320e98e454d346b223096fe840c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTalk: {fileID: 11400000, guid: 7bad387efc1a35d46a4b69436426697d, type: 2}
 --- !u!1 &1172925997
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,41 +629,37 @@ MonoBehaviour:
     lastUpdated: 0
     globalFacts:
       _serializedList:
-      - Key: timesGameLoaded
+      - Key: 3
         Value: 0
-      - Key: timesSinceLastPlayed
+      - Key: 4
         Value: 0
     idFacts:
       _serializedList:
-      - Key: isSpeaking
+      - Key: 5
         Value: 0
-      - Key: timesInterrupted
+      - Key: 6
         Value: 0
-      - Key: timesIgnored
+      - Key: 7
         Value: 0
     egoFacts:
       _serializedList:
-      - Key: isSpeaking
+      - Key: 5
         Value: 0
-      - Key: timesInterrupted
+      - Key: 6
         Value: 0
-      - Key: timesIgnored
+      - Key: 7
         Value: 0
     superEgoFacts:
       _serializedList:
-      - Key: isSpeaking
+      - Key: 5
         Value: 0
-      - Key: timesInterrupted
+      - Key: 6
         Value: 0
-      - Key: timesIgnored
+      - Key: 7
         Value: 0
   factSheet: {fileID: 11400000, guid: 2e29b4abbfda68a45b07c9038446241b, type: 2}
-  actions: {fileID: 0}
   fileName: PlayerSave.json
-  settingsFileName: SettingsSave.json
   useEncryption: 1
-  initializeDataIfNull: 0
-  useAutoSave: 0
 --- !u!4 &1261541872
 Transform:
   m_ObjectHideFlags: 0
@@ -693,10 +769,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0b6b9025c82e949b5d967e0e294a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: c1aa7a064c4c1214783e5ed7a83d20f5, type: 2}
+  gameEvent: {fileID: 11400000, guid: 9877abd7002f3bf41ac85c41a2861e55, type: 2}
   response:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1388910336}
+        m_TargetAssemblyTypeName: Tripartite.Characters.Egor, Assembly-CSharp
+        m_MethodName: OnResponse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1388910336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,8 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebca838f28372b4b9f086cadb52fd24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTalk: {fileID: 0}
-  message: 
+  onTalk: {fileID: 11400000, guid: 7bad387efc1a35d46a4b69436426697d, type: 2}
 --- !u!1 &1462051183
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03464fe34182fdc49a815379bf5a491e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pending: 0
 --- !u!4 &1462051185
 Transform:
   m_ObjectHideFlags: 0
@@ -891,6 +977,8 @@ GameObject:
   - component: {fileID: 1683266413}
   - component: {fileID: 1683266415}
   - component: {fileID: 1683266414}
+  - component: {fileID: 1683266417}
+  - component: {fileID: 1683266416}
   m_Layer: 5
   m_Name: Ida
   m_TagString: Untagged
@@ -960,6 +1048,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683266412}
   m_CullTransparentMesh: 1
+--- !u!114 &1683266416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683266412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0b6b9025c82e949b5d967e0e294a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9877abd7002f3bf41ac85c41a2861e55, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1683266417}
+        m_TargetAssemblyTypeName: Tripartite.Characters.Ida, Assembly-CSharp
+        m_MethodName: OnResponse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1683266417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683266412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c109b76c4ce748478e494b8706feea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTalk: {fileID: 11400000, guid: 7bad387efc1a35d46a4b69436426697d, type: 2}
 --- !u!1 &1791101389
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,6 +1102,7 @@ GameObject:
   - component: {fileID: 1791101391}
   - component: {fileID: 1791101393}
   - component: {fileID: 1791101394}
+  - component: {fileID: 1791101396}
   - component: {fileID: 1791101395}
   m_Layer: 5
   m_Name: Dane
@@ -1055,7 +1185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b423a1725274bf647b9b8d7e11cb211e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onConversationA01: {fileID: 0}
+  onConversationA00Cont: {fileID: 11400000, guid: c1aa7a064c4c1214783e5ed7a83d20f5, type: 2}
   onTalk: {fileID: 11400000, guid: 7bad387efc1a35d46a4b69436426697d, type: 2}
   message: 
 --- !u!114 &1791101394
@@ -1123,6 +1253,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1791101393}
         m_TargetAssemblyTypeName: Tripartite.Characters.Dane, Assembly-CSharp
         m_MethodName: OnConversationA00
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1791101396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791101389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0b6b9025c82e949b5d967e0e294a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9877abd7002f3bf41ac85c41a2861e55, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1791101393}
+        m_TargetAssemblyTypeName: Tripartite.Characters.Dane, Assembly-CSharp
+        m_MethodName: OnResponse
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,73 +1,116 @@
 using AYellowpaper.SerializedCollections;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using Tripartite.Dialogue;
+using Tripartite.Events;
 using UnityEngine;
 
-public class DialogueManager : MonoBehaviour
+namespace Tripartite.Dialogue
 {
-    #region FIELDS
-    [Header("Fact Sheets")]
-    [SerializeField] private FactSheet factSheet;
-    [SerializeField] private RulesSheet IdaRules;
-    [SerializeField] private RulesSheet EgorRules;
-    [SerializeField] private RulesSheet SummerRules;
-
-    [Space(20)]
-    [Header("Query")]
-    [SerializeField] private ResponseQuery currentQuery;
-    #endregion
-
-    public void OnReceiveDialogue(Component sender, object data)
+    public class DialogueManager : MonoBehaviour
     {
-        if (!(data is ResponseQuery)) return;
+        #region FIELDS
+        [Header("Fact Sheet")]
+        [SerializeField] private FactSheet factSheet;
 
-        currentQuery = (ResponseQuery)data;
+        [Header("Rule Sheets")]
+        [SerializeField] private SerializedDictionary<int, RuleSheet> ruleSheets = new SerializedDictionary<int, RuleSheet>();
 
-        // Compile more facts onto the query based on the listener
-        switch(currentQuery.Get("listener").value)
+        [Space(20)]
+        [Header("Query")]
+        [SerializeField] private ResponseQuery currentQuery;
+
+        [Header("Events")]
+        [SerializeField] private GameEvent onResponse;
+        #endregion
+
+        public void Awake()
         {
-            // Id
-            case 15067f:
-                foreach(KeyValuePair<string, float> keyValue in factSheet.facts["Id"])
-                {
-                    currentQuery.Add(keyValue.Key, keyValue.Value);
-                }
-                break;
-
-            // Ego
-            case 15068f:
-                foreach (KeyValuePair<string, float> keyValue in factSheet.facts["Ego"])
-                {
-                    currentQuery.Add(keyValue.Key, keyValue.Value);
-                }
-                break;
-
-            // Superego
-            case 15069f:
-                foreach (KeyValuePair<string, float> keyValue in factSheet.facts["Superego"])
-                {
-                    currentQuery.Add(keyValue.Key, keyValue.Value);
-                }
-                break;
+            // Sort the RuleSheet's Rule list by descending amount of Criterion
+            foreach(KeyValuePair<int, RuleSheet> kvp in ruleSheets)
+            {
+                kvp.Value.rules.Sort((a, b) => b.criteria.Count.CompareTo(a.criteria.Count));
+            }
         }
 
-        // Compile global facts
-        foreach (KeyValuePair<string, float> keyValue in factSheet.facts["Global"])
+        /// <summary>
+        /// Allocate ResponseQuery
+        /// </summary>
+        /// <param name="sender">The component raising the event</param>
+        /// <param name="data">The ResponseQuery</param>
+        public void OnReceiveDialogue(Component sender, object data)
         {
-            currentQuery.Add(keyValue.Key, keyValue.Value);
+            if (!(data is ResponseQuery)) return;
+
+            Debug.Log("Received A00-1");
+            currentQuery = (ResponseQuery)data;
+
+            // Compile more facts onto the query based on the listener
+            switch (currentQuery.Get(FactKey.Listener).value)
+            {
+                // Id
+                case 0:
+                    foreach (KeyValuePair<FactKey, int> keyValue in factSheet.facts["Ida"])
+                    {
+                        currentQuery.Add(keyValue.Key, keyValue.Value);
+                    }
+                    break;
+
+                // Ego
+                case 1:
+                    foreach (KeyValuePair<FactKey, int> keyValue in factSheet.facts["Egor"])
+                    {
+                        currentQuery.Add(keyValue.Key, keyValue.Value);
+                    }
+                    break;
+
+                // Superego
+                case 2:
+                    foreach (KeyValuePair<FactKey, int> keyValue in factSheet.facts["Summer"])
+                    {
+                        currentQuery.Add(keyValue.Key, keyValue.Value);
+                    }
+                    break;
+            }
+
+            // Compile global facts
+            foreach (KeyValuePair<FactKey, int> keyValue in factSheet.facts["Global"])
+            {
+                currentQuery.Add(keyValue.Key, keyValue.Value);
+            }
+
+
+            // Move on to the next step
+            Debug.Log("Query Built");
+            OnQueryBuilt();
         }
-    }
 
-    public void SearchCriterion()
-    {
-        switch(currentQuery.Get("concept").value)
+        /// <summary>
+        /// Test the current ResponseQuery against rules
+        /// </summary>
+        public void OnQueryBuilt()
         {
-            // A00 - New Start
-            case 6500f:
+            Debug.Log($"Checking Responses for {currentQuery.Get(FactKey.Listener).value}");
+            // Go to the rule partition of the intended listener
+            if (ruleSheets.TryGetValue(currentQuery.Get(FactKey.Listener).value, out RuleSheet value))
+            {
+                Debug.Log($"Rule Sheet Selected: {value}");
 
-                break;
+                foreach (Rule rule in value.rules)
+                {
+                    // If a criteria succeeds, raise it's response - the highest criteria rule will
+                    // automatically prevail because sorting by highest amount of criterion
+                    if(rule.CheckCriteria(currentQuery))
+                    {
+                        Debug.Log("Response Raised");
+                        onResponse.Raise(this, rule.response);
+                    }
+                }
+
+                Debug.LogWarning("No Rule Fit");
+            } else
+            {
+                Debug.LogError($"No RuleSheet for {currentQuery.Get(FactKey.Listener).value}");
+            }
         }
     }
 }

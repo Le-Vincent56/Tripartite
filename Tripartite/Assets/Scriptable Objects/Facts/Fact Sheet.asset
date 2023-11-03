@@ -17,34 +17,34 @@ MonoBehaviour:
     - Key: Global
       Value:
         _serializedList:
-        - Key: timesGameLoaded
+        - Key: 2
           Value: 1
-        - Key: timesSinceLastPlayed
-          Value: 0
-    - Key: Id
+        - Key: 3
+          Value: 1191194199
+    - Key: Ida
       Value:
         _serializedList:
-        - Key: isSpeaking
+        - Key: 4
           Value: 0
-        - Key: timesInterrupted
+        - Key: 5
           Value: 0
-        - Key: timesIgnored
+        - Key: 6
           Value: 0
-    - Key: Ego
+    - Key: Egor
       Value:
         _serializedList:
-        - Key: isSpeaking
+        - Key: 4
           Value: 0
-        - Key: timesInterrupted
+        - Key: 5
           Value: 0
-        - Key: timesIgnored
+        - Key: 6
           Value: 0
-    - Key: Superego
+    - Key: Summer
       Value:
         _serializedList:
-        - Key: isSpeaking
+        - Key: 4
           Value: 0
-        - Key: timesInterrupted
+        - Key: 5
           Value: 0
-        - Key: timesIgnored
+        - Key: 6
           Value: 0

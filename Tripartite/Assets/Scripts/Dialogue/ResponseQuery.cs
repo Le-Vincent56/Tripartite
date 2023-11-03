@@ -5,12 +5,26 @@ using UnityEngine;
 namespace Tripartite.Dialogue
 {
     [System.Serializable]
+    public enum FactKey
+    {
+        Speaker,
+        Listener,
+        Concept,
+        ConversationPart,
+        TimesGameLoaded,
+        TimeSinceLastPlayed,
+        IsSpeaking,
+        TimesInterrupted,
+        TimesIgnored
+    }
+
+    [System.Serializable]
     public class Fact
     {
-        public string key;
-        public float value;
+        public FactKey key;
+        public int value;
 
-        public Fact(string key, float value)
+        public Fact(FactKey key, int value)
         {
             this.key = key;
             this.value = value;
@@ -29,7 +43,7 @@ namespace Tripartite.Dialogue
         /// </summary>
         /// <param name="key">The key of of the fact</param>
         /// <param name="value">The value of the fact</param>
-        public void Add(string key, float value)
+        public void Add(FactKey key, int value)
         {
             facts.Add(new Fact(key, value));
         }
@@ -39,7 +53,7 @@ namespace Tripartite.Dialogue
         /// </summary>
         /// <param name="key">The key of the fact to find</param>
         /// <returns>A fact if the key is found within the query, null if not</returns>
-        public Fact Get(string key)
+        public Fact Get(FactKey key)
         {
             // Find a fact within the fact list
             Fact fact = null;

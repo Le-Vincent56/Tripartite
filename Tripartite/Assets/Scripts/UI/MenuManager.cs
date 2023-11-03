@@ -42,7 +42,7 @@ namespace Tripartite.UI
                 // If data exists, check how many times the game has been loaded
                 if (factSheet.TryGetKey("Global"))
                 {
-                    if (factSheet.facts["Global"].TryGetValue("timesGameLoaded", out float value))
+                    if (factSheet.facts["Global"].TryGetValue(FactKey.TimesGameLoaded, out int value))
                     {
                         // If the game has been loaded once or more, show the continue/restart menu
                         if (value >= 1)
@@ -79,9 +79,9 @@ namespace Tripartite.UI
             // Set TimesGameLoaded to 1
             if (factSheet.TryGetKey("Global"))
             {
-                if(factSheet.facts["Global"].TryGetValue("timesGameLoaded", out float value))
+                if (factSheet.facts["Global"].TryGetValue(FactKey.TimesGameLoaded, out int value))
                 {
-                    factSheet.facts["Global"]["timesGameLoaded"] = 1;
+                    factSheet.facts["Global"][FactKey.TimesGameLoaded] = 1;
                 } else
                 {
                     Debug.LogError("No Key called timesGameLoaded in the Global Fact Sheet");
@@ -103,9 +103,9 @@ namespace Tripartite.UI
             // Set TimesGameLoaded to 1
             if (factSheet.TryGetKey("Global"))
             {
-                if (factSheet.facts["Global"].TryGetValue("timesGameLoaded", out float value))
+                if (factSheet.facts["Global"].TryGetValue(FactKey.TimesGameLoaded, out int value))
                 {
-                    factSheet.facts["Global"]["timesGameLoaded"] = value + 1;
+                    factSheet.facts["Global"][FactKey.TimesGameLoaded] = 1;
                 }
                 else
                 {

@@ -113,9 +113,9 @@ namespace Tripartite.Data
             // Pass the data to other scripts so they can update it
             factSheet.SaveData(gameData);
 
-            if(gameData.globalFacts.TryGetValue("timeSinceLastPlayed", out float value))
+            if(gameData.globalFacts.TryGetValue(FactKey.TimeSinceLastPlayed, out int value))
             {
-                gameData.globalFacts["timeSinceLastPlayed"] = System.DateTime.Now.ToBinary();
+                gameData.globalFacts[FactKey.TimeSinceLastPlayed] = (int)System.DateTime.Now.ToBinary();
             }
 
             // Save that data to a file using the data handler

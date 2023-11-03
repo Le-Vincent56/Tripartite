@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88d13523ca9550644bc4219b9f8ad9bd, type: 3}
-  m_Name: OnA01
+  m_Script: {fileID: 11500000, guid: dbeb6aa94335b6e488fad1acd4f2d431, type: 3}
+  m_Name: Dane Rule Sheet
   m_EditorClassIdentifier: 
-  listeners: []
+  rules:
+  - {fileID: 11400000, guid: f97a7cfa364d37f40a47e75701a497bc, type: 2}
