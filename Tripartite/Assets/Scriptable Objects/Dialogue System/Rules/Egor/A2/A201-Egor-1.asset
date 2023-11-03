@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c0e14709df7fa409c71ea1418b04c7, type: 3}
+  m_Name: A201-Egor-1
+  m_EditorClassIdentifier: 
+  criteria:
+  - {fileID: 11400000, guid: 416fa95005bc4ec469b41639e3a4ec3a, type: 2}
+  - {fileID: 11400000, guid: dcf52c5bff8462a4e9960903d259a4c1, type: 2}
+  - {fileID: 11400000, guid: 2c2c5818540242447ab571850cb1efff, type: 2}
+  response: {fileID: 11400000, guid: be9e9a9485c755b4d93f5a270a949fa8, type: 2}

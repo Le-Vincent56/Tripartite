@@ -57,6 +57,12 @@ namespace Tripartite.Characters
             // Return if not this speaker
             if (response.speaker.value != 3) return;
 
+            // Clear response before if necessary
+            if (response.clearResponseBefore)
+            {
+                messageText.text = "";
+            }
+
             Debug.Log("Response Written!");
 
             // Add text
@@ -66,6 +72,16 @@ namespace Tripartite.Characters
             }
 
             StartCoroutine(WaitForText(response));
+        }
+
+        /// <summary>
+        /// Clear Dane's text
+        /// </summary>
+        /// <param name="sender">The component raising the event</param>
+        /// <param name="data">The data to send</param>
+        public void OnClearText(Component sender, object data)
+        {
+            messageText.text = "";
         }
 
         /// <summary>
@@ -96,6 +112,13 @@ namespace Tripartite.Characters
             {
                 response.gameEvent.Raise(this, this);
                 Debug.Log("Triggered Response Event");
+            }
+
+            // Trigger an event for options if there is one
+            if (response.CheckEventOptions())
+            {
+                response.gameEventOptions.Raise(this, response.optionData);
+                Debug.Log("Triggered Options Response Event");
             }
         }
 

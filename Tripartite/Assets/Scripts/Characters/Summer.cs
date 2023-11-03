@@ -37,8 +37,14 @@ namespace Tripartite.Characters
             // Return if not this speaker
             if (response.speaker.value != 2) return;
 
+            // Clear response before if necessary
+            if (response.clearResponseBefore)
+            {
+                messageText.text = "";
+            }
+
             // Add text
-            for(int i = 0; i < response.text.Length; i++)
+            for (int i = 0; i < response.text.Length; i++)
             {
                 textWriterSingle = TextWriter.AddWriter_Static(messageText, response.text[i], response.textSpeed[i], true);
             }
@@ -74,6 +80,13 @@ namespace Tripartite.Characters
             {
                 response.gameEvent.Raise(this, this);
                 Debug.Log("Triggered Response Event");
+            }
+
+            // Trigger an event for options if there is one
+            if (response.CheckEventOptions())
+            {
+                response.gameEventOptions.Raise(this, response.optionData);
+                Debug.Log("Triggered Options Response Event");
             }
         }
     }

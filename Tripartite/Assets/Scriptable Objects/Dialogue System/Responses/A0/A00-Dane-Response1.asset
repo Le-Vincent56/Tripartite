@@ -10,19 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc9f0d5272b469642b054b1968260d14, type: 3}
-  m_Name: A00-Egor-Response2
+  m_Name: A00-Dane-Response1
   m_EditorClassIdentifier: 
   speaker:
     key: 0
-    value: 1
+    value: 3
   text:
-  - Dane Cutter Reeves, 26, found trying to drown himself in a river. Suspected to
-    have been attempting suicide after murdering a family of five.
-  - The father, 44, attempted to defend his family, but was no match for the brutal
-    technique Reeves seemed to have with the farming tools he stole from the family...
+  - .  .  .
+  - What?
   textSpeed:
-  - 0.025
+  - 0.2
   - 0.025
   nextQuery:
-    facts: []
+    facts:
+    - key: 1
+      value: 1
+    - key: 2
+      value: 6500
+    - key: 3
+      value: 1
   gameEvent: {fileID: 0}

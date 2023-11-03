@@ -39,6 +39,12 @@ namespace Tripartite.Characters
 
             Debug.Log("Response Written!");
 
+            // Clear response before if necessary
+            if(response.clearResponseBefore)
+            {
+                messageText.text = "";
+            }
+
             // Add text
             for (int i = 0; i < response.text.Length; i++)
             {
@@ -76,6 +82,13 @@ namespace Tripartite.Characters
             {
                 response.gameEvent.Raise(this, this);
                 Debug.Log("Triggered Response Event");
+            }
+
+            // Trigger an event for options if there is one
+            if (response.CheckEventOptions())
+            {
+                response.gameEventOptions.Raise(this, response.optionData);
+                Debug.Log("Triggered Options Response Event");
             }
         }
     }
