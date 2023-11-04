@@ -14,7 +14,8 @@ namespace Tripartite.Characters
         #region FIELDS
         [SerializeField] private GameEvent onConversationA00Cont;
         [SerializeField] private GameEvent onTalk;
-        private Text messageText;
+        [SerializeField] private string textColor;
+        private TextWithScrollbar messageText;
         private TextWriter.TextWriterSingle textWriterSingle;
 
         public string message;
@@ -22,7 +23,7 @@ namespace Tripartite.Characters
 
         private void Awake()
         {
-            messageText = GetComponent<Text>();
+            messageText = GetComponent<TextWithScrollbar>();
         }
 
         /// <summary>
@@ -33,10 +34,10 @@ namespace Tripartite.Characters
         public void OnConversationA00(Component sender, object data)
         {
             string message = "Well, this is it. I think I’ve finally gone insane.";
-            textWriterSingle = TextWriter.AddWriter_Static(messageText, message, 0.025f, true);
+            textWriterSingle = TextWriter.AddWriter_Static(messageText, textColor, message, 0.025f);
 
             message = "It’s been a good run, I think. I kept to myself, I treated my parents well, my dog’s still alive.";
-            textWriterSingle = TextWriter.AddWriter_Static(messageText, message, 0.025f, true);
+            textWriterSingle = TextWriter.AddWriter_Static(messageText, textColor, message, 0.025f);
 
             StartCoroutine(WaitForInactiveA00());
         }
@@ -57,31 +58,15 @@ namespace Tripartite.Characters
             // Return if not this speaker
             if (response.speaker.value != 3) return;
 
-            // Clear response before if necessary
-            if (response.clearResponseBefore)
-            {
-                messageText.text = "";
-            }
-
             Debug.Log("Response Written!");
 
             // Add text
             for (int i = 0; i < response.text.Length; i++)
             {
-                textWriterSingle = TextWriter.AddWriter_Static(messageText, response.text[i], response.textSpeed[i], true);
+                textWriterSingle = TextWriter.AddWriter_Static(messageText, textColor, response.text[i], response.textSpeed[i]);
             }
 
             StartCoroutine(WaitForText(response));
-        }
-
-        /// <summary>
-        /// Clear Dane's text
-        /// </summary>
-        /// <param name="sender">The component raising the event</param>
-        /// <param name="data">The data to send</param>
-        public void OnClearText(Component sender, object data)
-        {
-            messageText.text = "";
         }
 
         /// <summary>

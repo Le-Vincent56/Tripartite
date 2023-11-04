@@ -9,7 +9,6 @@ namespace Tripartite.UI
     public class OptionButtonController : MonoBehaviour
     {
         #region FIELDS
-        [SerializeField] private GameEvent onClearDaneText;
         public Button button1;
         public Button button2;
         public Button button3;
@@ -69,8 +68,7 @@ namespace Tripartite.UI
             // Cast data
             List<OptionData> optionData = (List<OptionData>)data;
 
-            // Clear Dane's text
-            onClearDaneText.Raise(this, this);
+            // Show options
             ShowOptions(optionData);
         }
 

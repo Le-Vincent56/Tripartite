@@ -16,7 +16,7 @@ MonoBehaviour:
   response:
     facts:
     - key: 1
-      value: 1
+      value: 3
     - key: 2
       value: 6520
     - key: 3

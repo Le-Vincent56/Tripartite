@@ -41,8 +41,6 @@ namespace Tripartite.Dialogue
         {
             if (!(data is ResponseQuery)) return;
 
-            Debug.Log("Received A00-1");
-
             // Cast the data
             ResponseQuery passedData = (ResponseQuery)data;
             currentQuery = new ResponseQuery();
@@ -110,7 +108,7 @@ namespace Tripartite.Dialogue
                     // automatically prevail because sorting by highest amount of criterion
                     if(rule.CheckCriteria(currentQuery))
                     {
-                        Debug.Log("Response Raised");
+                        Debug.Log("Response Raised: " + rule.response);
                         onResponse.Raise(this, rule.response);
                     }
                 }

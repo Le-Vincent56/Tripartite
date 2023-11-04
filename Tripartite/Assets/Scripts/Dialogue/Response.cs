@@ -11,7 +11,6 @@ namespace Tripartite.Dialogue
     {
         #region FIELDS
         public Fact speaker;
-        public bool clearResponseBefore;
         public string[] text;
         public float[] textSpeed;
         public ResponseQuery nextQuery;

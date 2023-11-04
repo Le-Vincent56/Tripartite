@@ -16,6 +16,8 @@ namespace Tripartite.UI
 
         public void OnClick()
         {
+            Debug.Log("OnClick()");
+
             // Raise this response
             gameEvent.Raise(this, response);
 

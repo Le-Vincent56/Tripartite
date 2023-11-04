@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -37,7 +38,7 @@ namespace Tripartite.UI
             if(context.started && writerQueue.Count > 0)
             {
                 // If a current writer is active, write all of it
-                if(writerQueue.Peek().IsActive())
+                if (writerQueue.Peek().IsActive())
                 {
                     writerQueue.Peek().WriteAll();
                 } else
@@ -57,10 +58,10 @@ namespace Tripartite.UI
         /// <param name="invisibleCharacters">Whether to keep invisible character placement</param>
         /// <param name="removeWriterBeforeAdd">Whether to destroy the TextWriterSingle before it</param>
         /// <returns></returns>
-        public static TextWriterSingle AddWriter_Static(Text textUI, string text, float timePerCharacter, bool invisibleCharacters)
+        public static TextWriterSingle AddWriter_Static(TextWithScrollbar textUI, string color, string text, float timePerCharacter)
         {
             // Create single text writer with data
-            return instance.AddWriter(textUI, text, timePerCharacter, invisibleCharacters);
+            return instance.AddWriter(textUI, color, text, timePerCharacter);
         }
 
         /// <summary>
@@ -70,9 +71,9 @@ namespace Tripartite.UI
         /// <param name="text">The text to show</param>
         /// <param name="timePerCharacter">How fast to show a character</param>
         /// <param name="invisibleCharacters">Keep invisible characters</param>
-        private TextWriterSingle AddWriter(Text textUI, string text, float timePerCharacter, bool invisibleCharacters)
+        private TextWriterSingle AddWriter(TextWithScrollbar textUI, string color, string text, float timePerCharacter)
         {
-            TextWriterSingle textWriterSingle = new TextWriterSingle(textUI, text, timePerCharacter, invisibleCharacters);
+            TextWriterSingle textWriterSingle = new TextWriterSingle(textUI, color, text, timePerCharacter);
 
             // Create single text writer with data
             writerQueue.Enqueue(textWriterSingle);
@@ -83,23 +84,25 @@ namespace Tripartite.UI
         public class TextWriterSingle
         {
             #region FIELDS
-            private Text textUI;
+            private TextWithScrollbar textUI;
+            string color;
             private string textToWrite;
-            private string textToShow;
+            private string textToAdd;
             private int characterIndex;
             private float timePerCharacter;
-            private float timer = 0;
-            private bool invisibleCharacters;
+            private float timer;
+            private bool addedNewLine;
             #endregion
 
-            public TextWriterSingle(Text textUI, string textToWrite, float timePerCharacter, bool invisibleCharacters)
+            public TextWriterSingle(TextWithScrollbar textUI, string color, string textToWrite, float timePerCharacter)
             {
                 this.textUI = textUI;
+                this.color = color;
                 this.textToWrite = textToWrite;
                 this.timePerCharacter = timePerCharacter;
-                this.invisibleCharacters = invisibleCharacters;
                 characterIndex = 0;
                 timer = 0;
+                addedNewLine = false;
             }
 
             /// <summary>
@@ -111,9 +114,22 @@ namespace Tripartite.UI
                 // If textUI is null, return
                 if (textUI == null) return;
 
+                if(characterIndex == 0)
+                {
+                    textUI.AppendTextNewLine($"<color={color}></color>");
+                }
+
                 // Check if the text has ended
                 if (characterIndex >= textToWrite.Length)
                 {
+                    if (!addedNewLine)
+                    {
+                        // Append the last color tag
+                        textUI.AppendTextNewLine("");
+
+                        addedNewLine = true;
+                    }
+
                     // If so, return true
                     return;
                 }
@@ -126,19 +142,22 @@ namespace Tripartite.UI
                 {
                     // If so, then add the time per character and increment the index
                     timer += timePerCharacter;
-                    characterIndex++;
+                    
 
                     // Write the text up to the character index
-                    textToShow = textToWrite.Substring(0, characterIndex);
+                    textToAdd = $"{textToWrite[characterIndex]}";
 
                     // If invisible characters are enabled, add the rest of the substring in an invisible color to prevent movement
-                    if (invisibleCharacters)
-                    {
-                        textToShow += $"<color=#00000000>{textToWrite.Substring(characterIndex)}</color>";
-                    }
+                    //if (invisibleCharacters)
+                    //{
+                    //    textToShow += $"<color=#00000000>{textToWrite.Substring(characterIndex)}</color>";
+                    //}
 
                     // Show the text
-                    textUI.text = textToShow;
+                    textUI.InsertText(textToAdd, textUI.text.text.Length - 8);
+
+                    // Increment characterIndex
+                    characterIndex++;
                 }
             }
 
@@ -148,7 +167,7 @@ namespace Tripartite.UI
             /// <returns></returns>
             public Text GetTextUI()
             {
-                return textUI;
+                return textUI.text;
             }
 
             /// <summary>
@@ -166,8 +185,10 @@ namespace Tripartite.UI
             public void WriteAll()
             {
                 // Show all the text and prevent any more writing
-                textUI.text = textToWrite;
-                characterIndex = textToWrite.Length - 1;
+                //textUI.text = textToWrite;
+                //characterIndex = textToWrite.Length - 1;
+                textUI.InsertText(textToWrite.Substring(characterIndex), textUI.text.text.Length - 8);
+                characterIndex = textToWrite.Length;
             }
         }
     }

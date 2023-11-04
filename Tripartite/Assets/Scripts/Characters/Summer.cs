@@ -12,13 +12,14 @@ namespace Tripartite.Characters
     {
         #region FIELDS
         [SerializeField] private GameEvent onTalk;
-        private Text messageText;
+        [SerializeField] private string textColor;
+        private TextWithScrollbar messageText;
         private TextWriter.TextWriterSingle textWriterSingle;
         #endregion
 
         private void Awake()
         {
-            messageText = GetComponent<Text>();
+            messageText = GetComponent<TextWithScrollbar>();
         }
 
         /// <summary>
@@ -37,16 +38,10 @@ namespace Tripartite.Characters
             // Return if not this speaker
             if (response.speaker.value != 2) return;
 
-            // Clear response before if necessary
-            if (response.clearResponseBefore)
-            {
-                messageText.text = "";
-            }
-
             // Add text
             for (int i = 0; i < response.text.Length; i++)
             {
-                textWriterSingle = TextWriter.AddWriter_Static(messageText, response.text[i], response.textSpeed[i], true);
+                textWriterSingle = TextWriter.AddWriter_Static(messageText, textColor, response.text[i], response.textSpeed[i]);
             }
 
             StartCoroutine(WaitForText(response));

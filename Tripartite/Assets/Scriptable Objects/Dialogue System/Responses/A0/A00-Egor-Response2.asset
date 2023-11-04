@@ -17,11 +17,10 @@ MonoBehaviour:
     value: 1
   text:
   - Dane Cutter Reeves, 26, found trying to drown himself in a river. Suspected to
-    have been attempting suicide after murdering a family of five.
-  - The father, 44, attempted to defend his family, but was no match for the brutal
-    technique Reeves seemed to have with the farming tools he stole from the family...
+    have been attempting suicide after murdering a family of five. The father, 44,
+    attempted to defend his family, but was no match for the brutal technique Reeves
+    seemed to have with the farming tools he stole from the family...
   textSpeed:
-  - 0.025
   - 0.025
   nextQuery:
     facts: []
