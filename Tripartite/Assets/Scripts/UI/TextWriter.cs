@@ -147,12 +147,6 @@ namespace Tripartite.UI
                     // Write the text up to the character index
                     textToAdd = $"{textToWrite[characterIndex]}";
 
-                    // If invisible characters are enabled, add the rest of the substring in an invisible color to prevent movement
-                    //if (invisibleCharacters)
-                    //{
-                    //    textToShow += $"<color=#00000000>{textToWrite.Substring(characterIndex)}</color>";
-                    //}
-
                     // Show the text
                     textUI.InsertText(textToAdd, textUI.text.text.Length - 8);
 
@@ -185,8 +179,6 @@ namespace Tripartite.UI
             public void WriteAll()
             {
                 // Show all the text and prevent any more writing
-                //textUI.text = textToWrite;
-                //characterIndex = textToWrite.Length - 1;
                 textUI.InsertText(textToWrite.Substring(characterIndex), textUI.text.text.Length - 8);
                 characterIndex = textToWrite.Length;
             }
