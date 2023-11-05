@@ -2702,6 +2702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1791101391}
+  scrollbar: {fileID: 212692939}
 --- !u!114 &1791101401
 MonoBehaviour:
   m_ObjectHideFlags: 0
