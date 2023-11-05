@@ -31,9 +31,6 @@ namespace Tripartite.UI
 
         public void OnClick()
         {
-            // Raise this response
-            // gameEvent.Raise(this, response);
-
             // Hide the options
             onHideOptions.Raise(this, new Data(gameEvent, response));
         }
@@ -53,16 +50,29 @@ namespace Tripartite.UI
             }
         }
 
+        /// <summary>
+        /// Show the Button and Dialogue Option
+        /// </summary>
+        /// <param name="fadeSpeed">The speed to fade in at</param>
         public void Show(float fadeSpeed)
         {
             StartCoroutine(FadeIn(fadeSpeed));
         }
 
+        /// <summary>
+        /// Hide the Button and Dialogue Option
+        /// </summary>
+        /// <param name="fadeSpeed">The speed to fade out at</param>
         public void Hide(float fadeSpeed)
         {
             StartCoroutine(FadeOut(fadeSpeed));
         }
 
+        /// <summary>
+        /// Fade in the border and text of the Button at a certain speed
+        /// </summary>
+        /// <param name="fadeSpeed">The speed to fade in the border and text</param>
+        /// <returns></returns>
         public IEnumerator FadeIn(float fadeSpeed)
         {
             while (borderImage.color.a < 1 && text.color.a < 1)
@@ -84,6 +94,11 @@ namespace Tripartite.UI
             }
         }
 
+        /// <summary>
+        /// Fade out the border and text of the Button at a certain speed
+        /// </summary>
+        /// <param name="fadeSpeed">The speed to fade out the border and text</param>
+        /// <returns></returns>
         public IEnumerator FadeOut(float fadeSpeed)
         {
             while (borderImage.color.a > 0 && text.color.a > 0)

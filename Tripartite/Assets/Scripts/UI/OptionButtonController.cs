@@ -23,6 +23,7 @@ namespace Tripartite.UI
 
         public void Start()
         {
+            // Assign original position and current position
             scrollViewRectOriginalY = scrollViewRect.anchoredPosition;
             scrollViewRectCurrentY = scrollViewRectOriginalY;
         }
@@ -122,7 +123,7 @@ namespace Tripartite.UI
         }
 
         /// <summary>
-        /// Prepare and Show Options
+        /// Prepare and show Dialogue Options
         /// </summary>
         /// <param name="sender">The component raising the event</param>
         /// <param name="data">The data being sent</param>
@@ -138,8 +139,14 @@ namespace Tripartite.UI
             StartCoroutine(ShowOptions(optionData));
         }
 
+        /// <summary>
+        /// Hide the Dialogue Options
+        /// </summary>
+        /// <param name="sender">The component raising the event</param>
+        /// <param name="data">The data being sent</param>
         public void OnHideOptions(Component sender, object data)
         {
+            // If the data is the incorrect type, return
             if (!(data is DialogueOption.Data)) return;
 
             // Cast data
