@@ -80,6 +80,12 @@ namespace Tripartite.UI
             button2.GetComponent<DialogueOption>().Hide(buttonFadeSpeed);
             button3.GetComponent<DialogueOption>().Hide(buttonFadeSpeed);
 
+            // Don't continue until all buttons are inactive
+            while(button1.gameObject.activeSelf && button2.gameObject.activeSelf && button3.gameObject.activeSelf)
+            {
+                yield return null;
+            }
+
             // Begin an elapsed time total
             float elapsedTime = 0;
 

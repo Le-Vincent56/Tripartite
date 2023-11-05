@@ -16,12 +16,13 @@ MonoBehaviour:
     key: 0
     value: 1
   text:
-  - "Due to the displacement of the children from their parents, Reeves killed the
-    parents first before finding the children in a nearby shed. The bodies were found
-    a couple days later. Malcolm Cullen, the brother of victim and mother Rosa Cullen,
-    states that he \u201Cwas awaiting further information\u201D for a party that
-    he and his sister were planning for their mother\u2019s birthday. With the lack
-    of response, Malcolm figured something was wrong and visited the ghostly home."
+  - "... due to the displacement of the children from their parents, Reeves killed
+    the parents first before finding the children in a nearby shed. The bodies were
+    found a couple days later. Malcolm Cullen, the brother of victim and mother Rosa
+    Cullen, states that he \u201Cwas awaiting further information\u201D for a party
+    that he and his sister were planning for their mother\u2019s birthday. With the
+    lack of response, Malcolm figured something was wrong and visited the ghostly
+    home."
   textSpeed:
   - 0.025
   nextQuery:

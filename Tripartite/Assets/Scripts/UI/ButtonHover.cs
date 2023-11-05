@@ -19,9 +19,11 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     void Start()
     {
-        // Store the initial color of the inner Image
+        // Store the initial color of the inner Image - set a values to 1 as they are 0 by default
         normalFillColor = innerImage.color;
+        normalFillColor.a = 1f;
         normalTextColor = innerText.color;
+        normalTextColor.a = 1f;
     }
 
     /// <summary>
