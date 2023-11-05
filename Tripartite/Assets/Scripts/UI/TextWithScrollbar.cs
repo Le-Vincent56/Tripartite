@@ -8,6 +8,7 @@ public class TextWithScrollbar : MonoBehaviour
 {
     #region FIELDS
     public Text text;
+    public Scrollbar scrollbar;
     #endregion
 
     /// <summary>
@@ -17,6 +18,9 @@ public class TextWithScrollbar : MonoBehaviour
     public void AppendTextNewLine(string newText)
     {
         text.text += "\n" + newText;
+
+        // Set the scrollbar to the bottom
+        scrollbar.value = 0;
     }
 
     /// <summary>
@@ -26,6 +30,9 @@ public class TextWithScrollbar : MonoBehaviour
     public void AppendText(string newText)
     {
         text.text += newText;
+
+        // Set the scrollbar to the bottom
+        scrollbar.value = 0;
     }
 
     /// <summary>
@@ -39,6 +46,9 @@ public class TextWithScrollbar : MonoBehaviour
         {
             string currentText = text.text;
             text.text = currentText.Substring(0, indexToInsert) + newText + currentText.Substring(indexToInsert);
+
+            // Set the scrollbar to the bottom
+            scrollbar.value = 0;
         }
         else
         {

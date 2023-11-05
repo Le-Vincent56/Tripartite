@@ -28,5 +28,8 @@ MonoBehaviour:
   nextQuery:
     facts: []
   gameEvent: {fileID: 0}
-  gameEventOptions: {fileID: 0}
-  optionData: []
+  gameEventOptions: {fileID: 11400000, guid: 58c2d3fdcb4214a4baa7925923737052, type: 2}
+  optionData:
+  - {fileID: 11400000, guid: 526c28233e1a0464793903da5e0f9459, type: 2}
+  - {fileID: 11400000, guid: 663abd343e77e274b89d290ae73caea5, type: 2}
+  - {fileID: 11400000, guid: ddb66e023212dcb4fb0e8bfec2cfce4a, type: 2}

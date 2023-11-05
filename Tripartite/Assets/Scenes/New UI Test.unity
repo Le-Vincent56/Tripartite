@@ -283,7 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollViewRect: {fileID: 775079391}
   scrollViewRectOriginalY: {x: 0, y: 0}
-  scrollViewRectShiftedY: {x: 0, y: 75}
+  scrollViewRectShiftedY: {x: 0, y: 175}
   scrollViewRectCurrentY: {x: 0, y: 0}
   shiftSpeed: 0.917
   buttonFadeSpeed: 2
@@ -1019,7 +1019,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1106,6 +1106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc8d388cd5ca3444a3dc59077c6fff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canHoverChange: 1
   innerImage: {fileID: 705203190}
   innerText: {fileID: 1213648818}
   hoverFillColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1192,7 +1193,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1279,6 +1280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc8d388cd5ca3444a3dc59077c6fff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canHoverChange: 1
   innerImage: {fileID: 977087670}
   innerText: {fileID: 1409571565}
   hoverFillColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2284,6 +2286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc8d388cd5ca3444a3dc59077c6fff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canHoverChange: 1
   innerImage: {fileID: 143480214}
   innerText: {fileID: 1527159502}
   hoverFillColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2308,7 +2311,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

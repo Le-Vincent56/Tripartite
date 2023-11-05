@@ -9,9 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbeb6aa94335b6e488fad1acd4f2d431, type: 3}
-  m_Name: Ida Rule Sheet
+  m_Script: {fileID: 11500000, guid: 0f592cecaedcdc046b088be6be424356, type: 3}
+  m_Name: A101-Option1
   m_EditorClassIdentifier: 
-  rules:
-  - {fileID: 11400000, guid: fca244d7017302546bdd1752bc3b9069, type: 2}
-  - {fileID: 11400000, guid: f830e405954e8134ebefebabb9480f1b, type: 2}
+  text: Who are you?
+  response:
+    facts:
+    - key: 1
+      value: 0
+    - key: 0
+      value: 65102
+    - key: 3
+      value: 0

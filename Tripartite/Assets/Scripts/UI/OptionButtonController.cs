@@ -110,6 +110,7 @@ namespace Tripartite.UI
 
             // Raise the dialogue event
             data.gameEvent.Raise(this, data.response);
+            Debug.Log(data.gameEvent);
         }
 
         /// <summary>

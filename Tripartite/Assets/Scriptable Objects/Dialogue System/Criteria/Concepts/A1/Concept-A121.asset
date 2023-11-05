@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbeb6aa94335b6e488fad1acd4f2d431, type: 3}
-  m_Name: Ida Rule Sheet
+  m_Script: {fileID: 11500000, guid: 32bdbd3f205f11e44a83e9518db2a823, type: 3}
+  m_Name: Concept-A121
   m_EditorClassIdentifier: 
-  rules:
-  - {fileID: 11400000, guid: fca244d7017302546bdd1752bc3b9069, type: 2}
-  - {fileID: 11400000, guid: f830e405954e8134ebefebabb9480f1b, type: 2}
+  key: 2
+  criterionOperator: 0
+  value: 65121

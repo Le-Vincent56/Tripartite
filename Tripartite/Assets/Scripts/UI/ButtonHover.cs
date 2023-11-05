@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     #region FIELDS
+    public bool canHoverChange = true;
     public Image innerImage;
     public Text innerText;
     private Color normalFillColor;
@@ -21,9 +22,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         // Store the initial color of the inner Image - set a values to 1 as they are 0 by default
         normalFillColor = innerImage.color;
-        normalFillColor.a = 1f;
         normalTextColor = innerText.color;
-        normalTextColor.a = 1f;
     }
 
     /// <summary>
@@ -68,8 +67,11 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         while (elapsedTime < fadeDuration)
         {
             // Lerp the colors
-            innerImage.color = Color.Lerp(innerImage.color, targetFillColor, elapsedTime / fadeDuration);
-            innerText.color = Color.Lerp(innerText.color, targetTextColor, elapsedTime / fadeDuration);
+            Color imageColorLerp = Color.Lerp(innerImage.color, targetFillColor, elapsedTime / fadeDuration);
+            Color textColorLerp = Color.Lerp(innerText.color, targetTextColor, elapsedTime / fadeDuration);
+
+            innerImage.color = new Color(imageColorLerp.r, imageColorLerp.g, imageColorLerp.b, innerImage.color.a);
+            innerText.color = new Color(textColorLerp.r, textColorLerp.g, textColorLerp.b, innerText.color.a);
 
             // Update time
             elapsedTime += Time.deltaTime;
@@ -78,7 +80,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             yield return null;
         }
 
-        innerImage.color = targetFillColor;
-        innerText.color = targetTextColor;
+        innerImage.color = new Color(targetFillColor.r, targetFillColor.g, targetFillColor.b, innerImage.color.a);
+        innerText.color = new Color(targetTextColor.r, targetTextColor.g, targetTextColor.b, innerText.color.a);
     }
 }

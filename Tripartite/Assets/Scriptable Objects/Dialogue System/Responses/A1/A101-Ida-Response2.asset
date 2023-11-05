@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9f0d5272b469642b054b1968260d14, type: 3}
+  m_Name: A101-Ida-Response2
+  m_EditorClassIdentifier: 
+  speaker:
+    key: 0
+    value: 0
+  text:
+  - Don't tell me what to do.
+  textSpeed:
+  - 0.025
+  nextQuery:
+    facts: []
+  gameEvent: {fileID: 0}
+  gameEventOptions: {fileID: 11400000, guid: 58c2d3fdcb4214a4baa7925923737052, type: 2}
+  optionData:
+  - {fileID: 11400000, guid: 3efec1d075677b84fb38fcd0c44dde65, type: 2}
+  - {fileID: 11400000, guid: 80c3f78310e0fba499dce9dd1a1aab60, type: 2}
+  - {fileID: 11400000, guid: 2e404ea00f6e55945bde8d6f38a3ee96, type: 2}
