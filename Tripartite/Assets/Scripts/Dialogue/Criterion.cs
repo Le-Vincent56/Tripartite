@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Tripartite.Dialogue;
+using UnityEditor;
 using UnityEngine;
 
 namespace Tripartite.Dialogue
@@ -15,9 +16,11 @@ namespace Tripartite.Dialogue
     }
 
 
+    [System.Serializable]
     [CreateAssetMenu(menuName = "Dialogue System/Criterion")]
     public class Criterion : ScriptableObject
     {
+        public string _name;
         public FactKey key;
         public CriterionOperator criterionOperator;
         public int value;
@@ -53,5 +56,7 @@ namespace Tripartite.Dialogue
             // Return false if nothing is found
             return false;
         }
+
+        public string GetName() { return _name; }
     }
 }

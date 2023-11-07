@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32bdbd3f205f11e44a83e9518db2a823, type: 3}
   m_Name: Listener-Egor
   m_EditorClassIdentifier: 
+  _name: listener_egor
   key: 1
   criterionOperator: 0
   value: 1

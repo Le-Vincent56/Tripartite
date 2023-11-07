@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32bdbd3f205f11e44a83e9518db2a823, type: 3}
   m_Name: ConvPart-0
   m_EditorClassIdentifier: 
+  _name: cPart_0
   key: 3
   criterionOperator: 0
   value: 0
